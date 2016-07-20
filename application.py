@@ -2,7 +2,7 @@ import random
 import creds
 from bs4 import BeautifulSoup
 import requests
-from flask import Flask, jsonify, abort, make_response, request, url_for
+from flask import Flask, jsonify, abort, make_response, request, url_for, render_template
 import os
 
 app = Flask(__name__)
@@ -48,7 +48,7 @@ def randomizer(tracks, title, artist):
             for trk in track_ids:
                 response = track_lyrics_get(track_ids[0])  # just use the first
                 lyrics_all_versions.append(response['message']['body']['lyrics']['lyrics_body'])
-    str= lyrics_all_versions[0]+ '\n'
+    str= lyrics_all_versions[0]
     #return (lyrics_all_versions[0])
     return str
 
@@ -77,8 +77,9 @@ def run_app():
             tracks = [Song(title,artist)]
             #randomizer(tracks)
             str_error = None
-            return randomizer(tracks, title,artist)
-
+            lyrics = randomizer(tracks, title,artist)
+            #return randomizer(tracks, title,artist)
+            return  render_template("index.html", lyrics=lyrics)
         except Exception as str_error:
             pass
 
