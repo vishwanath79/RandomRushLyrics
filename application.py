@@ -34,7 +34,9 @@ def randomizer(tracks, title, artist):
             # get URLs
             for i in response['message']['body']['track_list']:
                 Urls.append((i['track']['track_share_url']))
-            print(Urls[0],"\n")
+            #print(Urls[0],"\n")
+
+
 
             # pull out track_ids
             track_ids = []
@@ -48,12 +50,13 @@ def randomizer(tracks, title, artist):
             for trk in track_ids:
                 response = track_lyrics_get(track_ids[0])  # just use the first
                 lyrics_all_versions.append(response['message']['body']['lyrics']['lyrics_body'])
-    str= lyrics_all_versions[0]
+    str = lyrics_all_versions[0]
+    loneurl = Urls[0]
     #return (lyrics_all_versions[0])
-    return str
+    return str, loneurl
 
 #GET ALL
-@app.route('/random')
+@app.route('/rushrandom')
 def run_app():
     source_code = requests.get('https://en.wikipedia.org/wiki/List_of_songs_recorded_by_Rush')
     soup = BeautifulSoup(source_code.content, "lxml")
@@ -77,14 +80,14 @@ def run_app():
             tracks = [Song(title,artist)]
             #randomizer(tracks)
             str_error = None
-            lyrics = randomizer(tracks, title,artist)
+            lyrics, loneurl = randomizer(tracks, title,artist)
             #return randomizer(tracks, title,artist)
-            return  render_template("index.html", lyrics=lyrics)
+            return  render_template("index.html", lyrics=lyrics, loneurl=loneurl)
         except Exception as str_error:
             pass
 
 
-
+# <!-- {% block content %}{% autoescape false %} {{loneurl}} {% endautoescape %}{% endblock %} -->
 
 
 if __name__ == "__main__":
@@ -93,7 +96,7 @@ if __name__ == "__main__":
     app.run(host=server, port=port, debug=True)
 
 
-    #get data
+
 
 
 
