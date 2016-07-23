@@ -26,7 +26,7 @@ def track_lyrics_get(track_id):
     return requests.get(url, params=payload).json()
 
 def randomizer(tracks, title, artist):
-    print(title.upper(),"------" ,artist.upper(), "\n")
+    print(title.upper(),"------" ,artist.upper())
     for track in tracks:
             # get json response from MusiXmatch search for track
             response = track_search(track.title, track.artist)
