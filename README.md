@@ -1,7 +1,7 @@
 # RandomRushLyrics
 Random Rush lyrics using Musixmatch API and Wikipedia
 
-See output here: http://ingvay7.pythonanywhere.com/rushrandom
+See output here: http://ingvay7.pythonanywhere.com/random
 
 
 
