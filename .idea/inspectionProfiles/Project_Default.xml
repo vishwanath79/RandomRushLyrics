@@ -4,12 +4,65 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="5">
+          <list size="58">
             <item index="0" class="java.lang.String" itemvalue="evernote" />
             <item index="1" class="java.lang.String" itemvalue="httplib2" />
             <item index="2" class="java.lang.String" itemvalue="numpy" />
             <item index="3" class="java.lang.String" itemvalue="requests" />
             <item index="4" class="java.lang.String" itemvalue="oauth2" />
+            <item index="5" class="java.lang.String" itemvalue="ipaddress" />
+            <item index="6" class="java.lang.String" itemvalue="numba" />
+            <item index="7" class="java.lang.String" itemvalue="pathspec" />
+            <item index="8" class="java.lang.String" itemvalue="bs4" />
+            <item index="9" class="java.lang.String" itemvalue="decorator" />
+            <item index="10" class="java.lang.String" itemvalue="jupyter-core" />
+            <item index="11" class="java.lang.String" itemvalue="texttable" />
+            <item index="12" class="java.lang.String" itemvalue="conda-env" />
+            <item index="13" class="java.lang.String" itemvalue="python-dateutil" />
+            <item index="14" class="java.lang.String" itemvalue="wcwidth" />
+            <item index="15" class="java.lang.String" itemvalue="llvmlite" />
+            <item index="16" class="java.lang.String" itemvalue="py4j" />
+            <item index="17" class="java.lang.String" itemvalue="pygal" />
+            <item index="18" class="java.lang.String" itemvalue="redis" />
+            <item index="19" class="java.lang.String" itemvalue="websocket-client" />
+            <item index="20" class="java.lang.String" itemvalue="cdecimal" />
+            <item index="21" class="java.lang.String" itemvalue="gevent-websocket" />
+            <item index="22" class="java.lang.String" itemvalue="semantic-version" />
+            <item index="23" class="java.lang.String" itemvalue="awsebcli" />
+            <item index="24" class="java.lang.String" itemvalue="esutil" />
+            <item index="25" class="java.lang.String" itemvalue="selenium" />
+            <item index="26" class="java.lang.String" itemvalue="backports.ssl-match-hostname" />
+            <item index="27" class="java.lang.String" itemvalue="blaze" />
+            <item index="28" class="java.lang.String" itemvalue="docker-py" />
+            <item index="29" class="java.lang.String" itemvalue="dockerpty" />
+            <item index="30" class="java.lang.String" itemvalue="conda" />
+            <item index="31" class="java.lang.String" itemvalue="gevent" />
+            <item index="32" class="java.lang.String" itemvalue="PyAudio" />
+            <item index="33" class="java.lang.String" itemvalue="beautifulsoup4" />
+            <item index="34" class="java.lang.String" itemvalue="grin" />
+            <item index="35" class="java.lang.String" itemvalue="path.py" />
+            <item index="36" class="java.lang.String" itemvalue="VerbalExpressions" />
+            <item index="37" class="java.lang.String" itemvalue="botocore" />
+            <item index="38" class="java.lang.String" itemvalue="sphinx-rtd-theme" />
+            <item index="39" class="java.lang.String" itemvalue="aniso8601" />
+            <item index="40" class="java.lang.String" itemvalue="conda-build" />
+            <item index="41" class="java.lang.String" itemvalue="blessed" />
+            <item index="42" class="java.lang.String" itemvalue="jupyter-client" />
+            <item index="43" class="java.lang.String" itemvalue="selenium-requests" />
+            <item index="44" class="java.lang.String" itemvalue="tld" />
+            <item index="45" class="java.lang.String" itemvalue="backports-abc" />
+            <item index="46" class="java.lang.String" itemvalue="cement" />
+            <item index="47" class="java.lang.String" itemvalue="jupyter-console" />
+            <item index="48" class="java.lang.String" itemvalue="enum34" />
+            <item index="49" class="java.lang.String" itemvalue="tabletext" />
+            <item index="50" class="java.lang.String" itemvalue="Flask-RESTful" />
+            <item index="51" class="java.lang.String" itemvalue="argh" />
+            <item index="52" class="java.lang.String" itemvalue="pathtools" />
+            <item index="53" class="java.lang.String" itemvalue="tables" />
+            <item index="54" class="java.lang.String" itemvalue="watchdog" />
+            <item index="55" class="java.lang.String" itemvalue="wikipedia" />
+            <item index="56" class="java.lang.String" itemvalue="cffi" />
+            <item index="57" class="java.lang.String" itemvalue="cryptography" />
           </list>
         </value>
       </option>
