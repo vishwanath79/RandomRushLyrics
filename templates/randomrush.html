@@ -1,0 +1,30 @@
+{% extends "output.html" %}
+
+
+{{ super() }}
+
+
+
+{% block content %}
+
+ <div class="inner cover">
+
+ <h1 class="cover-heading">Random Rush Lyrics</h1>
+
+
+<p></p>
+
+
+
+<p></p>
+<a href="{{loneurl}}">  <p> {{loneurl}} </p>   </a>
+
+<p style="white-space: pre-wrap">
+   {% autoescape false %} {{lyrics|safe }} {% endautoescape %}
+
+</p>
+
+      </div>
+
+
+{% endblock %}

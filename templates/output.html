@@ -44,21 +44,22 @@
               <!--<h3 class="masthead-brand">Cover</h3>-->
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="/">Home</a></li>
-                  <li><a href="randomrush">Random Rush</a></li>
+                  <li ><a href="/">Home</a></li>
+                  <li class="active"><a href="randomrush">Random Rush</a></li>
                   <li><a href="http://vishsubramanian.pythonanywhere.com/" target="_blank" >Contact</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
-          <div class="inner cover">
-            <h1 class="cover-heading">Just a collection of a few transient projects</h1>
-            <p class="lead">Click links above to navigate.</p>
-            <p class="lead">
-              <!--<a href="#" class="btn btn-lg btn-default">Learn more</a>-->
-            </p>
-          </div>
+
+ <div class="inner cover">
+   {% block content %}{% endblock %}
+ </div>
+
+
+
+
 
           <div class="mastfoot">
             <div class="inner">

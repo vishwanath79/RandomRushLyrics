@@ -57,9 +57,17 @@ def randomizer(tracks, title, artist):
     return lyr, loneurl
 
 
-
 @app.route('/')
-def run_app():
+def index():
+    return render_template('index.html')
+
+@app.route('/test')
+def test():
+    return render_template('Error.html')
+
+
+@app.route('/randomrush')
+def randomrush():
     logger.info("Get songlist from wikipedia")
     source_code = requests.get('https://en.wikipedia.org/wiki/List_of_songs_recorded_by_Rush')
     soup = BeautifulSoup(source_code.content, "lxml")
@@ -80,20 +88,18 @@ def run_app():
             tracks = [Song(title, artist)]
             # randomizer(tracks)
             lyrics, loneurl = randomizer(tracks, title, artist)
+
             # return randomizer(tracks, title,artist)
-            return render_template("index.html", lyrics=lyrics, loneurl=loneurl)
+            return render_template("randomrush.html", lyrics=lyrics, loneurl=loneurl)
         except Exception as e:
-            render_template("Error.html", error=str(e))
+            return render_template("Error.html", error=str(e))
 
 
 
 if __name__ == "__main__":
-    # server = '127.0.0.1'
-    # port = int(os.environ.get('PORT', 8001))
-    # app.run(host=server, debug=True)
-    logger.setLevel(colorlog.colorlog.logging.INFO)
+    logger.setLevel(colorlog.colorlog.logging.DEBUG)
     handler = colorlog.StreamHandler()
     handler.setFormatter(colorlog.ColoredFormatter())
     logger.addHandler(handler)
-    app.run()
+    app.run(threaded=True)
 
