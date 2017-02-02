@@ -94,3 +94,4 @@ ENV/
 .idea/emacs.xml
 .idea/inspectionProfiles/
 creds.py
+Bot/botcred.py

@@ -1,3 +1,8 @@
+import tweepy, time
+from creds import ACCESS_SECRET, ACCESS_TOKEN, CONSUMER_KEY, CONSUMER_SECRET
+from LyricRandomizer import call_lyrics
+import pprint
+import reprlib
 import random
 
 import colorlog
@@ -6,10 +11,14 @@ from bs4 import BeautifulSoup
 import reprlib
 import creds
 
+auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+api = tweepy.API(auth)
+
 logger = colorlog.getLogger()
 r = reprlib.Repr()
-r.maxlist = 400    # max elements displayed for lists
-#r.maxstring = 1000    # max characters displayed for strings
+#r.maxlist = 10000   # max elements displayed for lists
+r.maxstring = 100   # max characters displayed for strings
 
 
 class Song:
@@ -56,8 +65,10 @@ def randomizer(tracks):
         for trk in track_ids:
             response = track_lyrics_get(track_ids[0])  # just use the first
             lyrics_all_versions.append(response['message']['body']['lyrics']['lyrics_body'])
-
-    print(lyrics_all_versions[0])
+    logger.info("Returning lyrics")
+    botlyrics = lyrics_all_versions[0]
+    #print(lyrics_all_versions[0])
+    return(botlyrics)
 
 
 
@@ -82,7 +93,7 @@ def call_lyrics():
             str_error = None
             tracks = [Song(title, artist)]
             logger.info("calling Randomizer")
-            randomizer(tracks)
+            return randomizer(tracks)
             str_error = None
             # return title, artist
 
@@ -97,5 +108,22 @@ if __name__ == "__main__":
     handler = colorlog.StreamHandler()
     handler.setFormatter(colorlog.ColoredFormatter())
     logger.addHandler(handler)
-    call_lyrics()
     # get data
+    # what the bot will tweet
+
+    #tweetlist = ['Test tweet two!']
+    try:
+
+        tweetlist = str(call_lyrics())
+        info = (tweetlist[:130] + '... #rush') if len(tweetlist) > 140 else tweetlist
+        pprint.pprint(info)
+        api.update_status(info)
+        logger.info("Done tweeting")
+
+    except None:
+        pass
+
+    #pprint.pprint(info)
+
+
+
