@@ -109,15 +109,16 @@ if __name__ == "__main__":
     # what the bot will tweet
 
     # tweetlist = ['Test tweet two!']
-    try:
-
-        tweetlist = str(call_lyrics())
-        info = (tweetlist[:130] + '... #rush') if len(tweetlist) > 140 else tweetlist
-        pprint.pprint(info)
+    tweetlist = str(call_lyrics())
+    info = (tweetlist[:130] + '... #rush') if len(tweetlist) > 140 else tweetlist
+    pprint.pprint(info)
+    if len(info) > 10:
         api.update_status(info)
         logger.info("Done tweeting")
-
-    except None:
+    else:
+        logger.info("None returned")
         pass
 
-        # pprint.pprint(info)
+
+
+
