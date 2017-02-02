@@ -1,6 +1,5 @@
 import pprint
 import random
-import reprlib
 
 import colorlog
 import requests
@@ -15,9 +14,6 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 logger = colorlog.getLogger()
-r = reprlib.Repr()
-# r.maxlist = 10000   # max elements displayed for lists
-r.maxstring = 100  # max characters displayed for strings
 
 
 class Song:
@@ -108,17 +104,16 @@ if __name__ == "__main__":
     # get data
     # what the bot will tweet
 
-    # tweetlist = ['Test tweet two!']
     tweetlist = str(call_lyrics())
-    info = (tweetlist[:130] + '... #rush') if len(tweetlist) > 140 else tweetlist
-    pprint.pprint(info)
-    if len(info) > 10:
-        api.update_status(info)
+    # pprint.pprint(tweetlist)
+    info = (tweetlist[:140] + '... #rush') if len(tweetlist) > 140 else tweetlist
+
+    if (len(info) > 10) and ("copyright" not in info):
+        first_sentences = info[info.find('\n') + 1:info.rfind('\n')]
+        tweet = first_sentences + ' #rush'
+        pprint.pprint(tweet)
+        # api.update_status(tweet)
         logger.info("Done tweeting")
     else:
         logger.info("None returned")
         pass
-
-
-
-
