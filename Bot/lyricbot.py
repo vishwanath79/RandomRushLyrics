@@ -36,8 +36,6 @@ def track_lyrics_get(track_id):
 
 def randomizer(tracks):
     logger.info("Into randomizer")
-
-    # print((title.upper()),"------" ,artist.upper(), "\n")
     for track in tracks:
         # get json response from MusiXmatch search for track
         response = track_search(track.title, track.artist)
@@ -112,7 +110,7 @@ if __name__ == "__main__":
         first_sentences = info[info.find('\n') + 1:info.rfind('\n')]
         tweet = first_sentences + ' #rush'
         pprint.pprint(tweet)
-        # api.update_status(tweet)
+        #api.update_status(tweet)
         logger.info("Done tweeting")
     else:
         logger.info("None returned")
