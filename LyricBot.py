@@ -1,6 +1,5 @@
 import pprint
 import random
-
 import colorlog
 import requests
 import tweepy
@@ -14,6 +13,7 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 logger = colorlog.getLogger()
+
 
 
 class Song:
@@ -36,9 +36,13 @@ def track_lyrics_get(track_id):
 
 def randomizer(tracks):
     logger.info("Into randomizer")
+
+    #print((title.upper()),"------" ,artist.upper(), "\n")
     for track in tracks:
         # get json response from MusiXmatch search for track
         response = track_search(track.title, track.artist)
+
+
         urls = []
         # get URLs
         for i in response['message']['body']['track_list']:
@@ -51,16 +55,20 @@ def randomizer(tracks):
             if each['track']['has_lyrics'] == 1:
                 track_ids.append(each['track']['track_id'])
 
+
                 # get lyrics
                 # if len(track_ids) > 0:
         lyrics_all_versions = []
+
         for trk in track_ids:
             response = track_lyrics_get(track_ids[0])  # just use the first
+
             lyrics_all_versions.append(response['message']['body']['lyrics']['lyrics_body'])
+            hasher = ('#' + "".join(track.title.split()))
     logger.info("Returning lyrics")
     botlyrics = lyrics_all_versions[0]
-    # print(lyrics_all_versions[0])
-    return (botlyrics)
+    #print(lyrics_all_versions[0])
+    return (botlyrics, hasher)
 
 
 def call_lyrics():
@@ -74,7 +82,7 @@ def call_lyrics():
         if len(cells) == 5:
             songs = cells[0].find(text=True)
             songsdb.append(songs)
-            # print(songsdb)
+            #print(songsdb)
 
     for x in range(0, 1):
         # try 4 times
@@ -84,9 +92,10 @@ def call_lyrics():
             str_error = None
             tracks = [Song(title, artist)]
             logger.info("calling Randomizer")
+
             return randomizer(tracks)
             str_error = None
-            # return title, artist
+
 
 
         except Exception as str_error:
@@ -101,17 +110,21 @@ if __name__ == "__main__":
     logger.addHandler(handler)
     # get data
     # what the bot will tweet
-
-    tweetlist = str(call_lyrics())
-    # pprint.pprint(tweetlist)
-    info = (tweetlist[:140] + '... #rush') if len(tweetlist) > 140 else tweetlist
+    #tweetlist = str(call_lyrics())
+    tweetlist, hasher = call_lyrics()
+    #pprint.pprint(tweetlist)
+    info = (tweetlist[:140] + hasher) if len(tweetlist) > 140 else tweetlist
 
     if (len(info) > 10) and ("copyright" not in info):
         first_sentences = info[info.find('\n') + 1:info.rfind('\n')]
-        tweet = first_sentences + ' #rush'
+        tweet = first_sentences + " " + hasher
         pprint.pprint(tweet)
-        #api.update_status(tweet)
+
+        api.update_status(tweet)
         logger.info("Done tweeting")
     else:
         logger.info("None returned")
         pass
+
+
+
